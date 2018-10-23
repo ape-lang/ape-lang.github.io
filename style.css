@@ -85,10 +85,12 @@
 
  body>header {
    background: #282a36;
+   justify-content: center;
  }
 
  body>header>* {
    padding: 2.5rem;
+   max-width: 50%;
  }
 
  body>header h1 {
@@ -102,6 +104,7 @@
    background: #171921;
    padding: 1rem;
    border-radius: .25rem;
+   overflow: auto;
  }
 
  body>header ul {
