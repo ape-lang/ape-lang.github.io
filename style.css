@@ -1,0 +1,145 @@
+ @import url('https://fonts.googleapis.com/css?family=Titillium+Web');
+ hmtl,
+ body {
+   width: 100%;
+   height: 100%;
+   padding: 0;
+   margin: 0;
+ }
+
+ body {
+   font-family: 'Titillium Web', sans-serif;
+   color: #171921;
+ }
+
+ a {
+   display: inline-block;
+   text-decoration: none;
+   cursor: pointer;
+   color: #ffe953;
+   transition: opacity 0.2s;
+ }
+
+ a:hover {
+   opacity: 0.8;
+ }
+
+ a.alt {
+   color: #282a36;
+ }
+
+ a.btn {
+   color: white;
+   background: #171921;
+   padding: 1rem 2rem;
+   border: none;
+   border-radius: .25rem;
+ }
+
+ a.btn.primary {
+   color: #171921;
+   background: #ffe953;
+ }
+
+ body>nav {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   background: #171921;
+   color: white;
+   padding: 1rem;
+ }
+
+ body>nav ul {
+   padding: 0;
+   margin: 0;
+   list-style: none;
+ }
+
+ body>nav ul li a {
+   color: white;
+ }
+
+ body>nav img {
+   width: 50px;
+ }
+
+ body>header,
+ body>footer {
+   color: white;
+   display: flex;
+ }
+
+ body>footer {
+   background: #171921;
+   padding: .5rem;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   font-size: .9rem;
+ }
+
+ body>footer>* {
+   padding: .1rem;
+ }
+
+ body>header {
+   background: #282a36;
+ }
+
+ body>header>* {
+   padding: 2.5rem;
+ }
+
+ body>header h1 {
+   margin: 0;
+   padding: 0;
+   color: #ffe953;
+ }
+
+ body>header pre {
+   color: white;
+   background: #171921;
+   padding: 1rem;
+   border-radius: .25rem;
+ }
+
+ body>header ul {
+   list-style: none;
+ }
+
+ body>header ul li {
+   padding: .25rem;
+ }
+
+ body>header ul li::before {
+   content: "⬣";
+   color: #ffe953;
+   margin-right: .5rem;
+ }
+
+ body>main section {
+   min-height: 250px;
+   padding: 2rem;
+   text-align: center;
+   background: #f5f5f5;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+ }
+
+ body>main section header {
+   font-size: 2rem;
+   font-weight: bold;
+   margin: .5rem 0;
+ }
+
+ body>main section:nth-child(2n) {
+   background: #e5e5e5;
+ }
+
+ body>main section p,
+ body>main section a {
+   margin: 1rem 0;
+ }
