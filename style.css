@@ -88,12 +88,6 @@
    justify-content: center;
  }
 
-@media only screen and (max-width: 768px)  {
-   body>header {
-     flex-direction: column;
-   }
- }
-
  body>header>* {
    padding: 2.5rem;
    max-width: 50%;
@@ -151,4 +145,14 @@
  body>main section p,
  body>main section a {
    margin: 1rem 0;
+ }
+
+ @media only screen and (max-width: 768px) {
+   body>header {
+     flex-direction: column;
+   }
+  
+   body>header>* {
+     max-width: 100%;
+   }
  }
