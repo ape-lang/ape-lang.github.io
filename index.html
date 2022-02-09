@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="./prism.css" />
+    <link rel="stylesheet" type="text/css" href="./lib/codemirror.css" />
     <title>The Ape Programming Language | by shixiongfei</title>
     <style>
       body {
@@ -25,27 +25,18 @@
         font-family: monospace;
         font-size: 14px;
         font-weight: 400;
-        padding: 10px;
+        padding: 0;
         tab-size: 2;
-        width: calc(100vw - 44px);
-        height: calc(100vh - 246px);
+        width: calc(100vw - 20px);
+        height: calc(100vh - 225px);
         border-radius: 4px;
         box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
           0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
         letter-spacing: normal;
         line-height: 20px;
       }
-      .codejar-linenumbers {
-        background-color: #f9f9f9 !important;
-        border-left: solid 1px hsl(200, 20%, 88%);
-        border-top: solid 1px hsl(200, 20%, 88%);
-        border-bottom: solid 1px hsl(200, 20%, 88%);
-        color: #999 !important;
-        mix-blend-mode: normal !important;
-        width: 2.5em !important;
-        text-align: right !important;
-        padding-left: 0 !important;
-        padding-right: 0.5em !important;
+      .CodeMirror {
+        height: 100%;
       }
       #run {
         position: absolute;
@@ -86,9 +77,19 @@
         />
       </a>
     </div>
-    <script type="application/javascript" src="./prism.js"></script>
-    <script type="application/javascript" src="./codejar.js"></script>
-    <script type="application/javascript" src="./linenumbers.js"></script>
+    <script type="application/javascript" src="./lib/codemirror.js"></script>
+    <script
+      type="application/javascript"
+      src="./mode/commonlisp/commonlisp.js"
+    ></script>
+    <script
+      type="application/javascript"
+      src="./addon/edit/closebrackets.js"
+    ></script>
+    <script
+      type="application/javascript"
+      src="./addon/edit/matchbrackets.js"
+    ></script>
     <script type="text/javascript">
       const sample = [
         '(defn fib (n)',
@@ -97,19 +98,29 @@
         '         (fib (- n 2)))',
         '    n))',
         '',
-        '(print "fib 10 =" (fib 10))'
+        '(print "fib 10 =" (fib 10))',
+        ''
       ].join('\n')
 
       const editor = document.querySelector('.editor')
 
-      const jar = CodeJar(editor, withLineNumbers(Prism.highlightElement), {
-        tab: ' '.repeat(2),
-        indentOn: /[(]$/
+      const codemirror = CodeMirror(editor, {
+        value: sample,
+        lineNumbers: true,
+        autoCloseBrackets: true,
+        matchBrackets: true,
+        mode: 'commonlisp',
+        extraKeys: {
+          Tab: function (cm) {
+            var spaces = Array(cm.getOption('indentUnit') + 1).join(' ')
+            cm.replaceSelection(spaces)
+          }
+        }
       })
-      jar.updateCode(sample)
 
       function run() {
-        localStorage.setItem('apeScript', editor.textContent)
+        console.log(codemirror.getValue())
+        localStorage.setItem('apeScript', codemirror.getValue())
 
         const oldIframe = document.querySelector('iframe')
         if (oldIframe) {
