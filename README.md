@@ -1,5 +1,5 @@
-# The Ape Programming Language
+# Ape website
 
-Ape is a lightweight embedded dialect of the Lisp programming language.
+Home of the Ape website.
 
-Try it on https://ape.run
+Try it on https://ape-lang.github.io
