@@ -1,139 +1,133 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="./lib/codemirror.css" />
-    <title>The Ape Programming Language | by shixiongfei</title>
-    <style>
-      body {
-        display: flex;
-        flex-direction: column;
-        margin: 0;
-        height: 100%;
-      }
-      #panel {
-        position: relative;
-        width: calc(100vw - 20px);
-        height: calc(100vh - 222px);
-        padding: 10px;
-        cursor: default;
-        border-bottom: 1px solid #ccc;
-      }
-      .editor {
-        font-family: monospace;
-        font-size: 14px;
-        font-weight: 400;
-        padding: 0;
-        tab-size: 2;
-        width: calc(100vw - 20px);
-        height: calc(100vh - 225px);
-        border-radius: 4px;
-        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
-          0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
-        letter-spacing: normal;
-        line-height: 20px;
-      }
-      .CodeMirror {
-        height: 100%;
-      }
-      #run {
-        position: absolute;
-        bottom: 12px;
-        left: 12px;
-        width: 100px;
-        height: 30px;
-        border-radius: 2px;
-        outline: none;
-        border: none;
-        cursor: pointer;
-      }
-      .attachment-full {
-        position: fixed;
-        top: 0;
-        right: 0;
-      }
-      iframe {
-        width: 100%;
-        height: 200px;
-        overflow: hidden;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="panel">
-      <div class="editor language-lisp"></div>
-      <button id="run" onclick="run()">Run</button>
-      <a href="https://github.com/shixiongfei/ape">
-        <img
-          loading="lazy"
-          width="149"
-          height="149"
-          class="attachment-full size-full"
-          alt="Fork me on GitHub"
-          data-recalc-dims="1"
-          src="https://github.blog/wp-content/uploads/2008/12/forkme_right_green_007200.png?resize=149%2C149"
-        />
-      </a>
-    </div>
-    <script type="application/javascript" src="./lib/codemirror.js"></script>
-    <script
-      type="application/javascript"
-      src="./mode/commonlisp/commonlisp.js"
-    ></script>
-    <script
-      type="application/javascript"
-      src="./addon/edit/closebrackets.js"
-    ></script>
-    <script
-      type="application/javascript"
-      src="./addon/edit/matchbrackets.js"
-    ></script>
-    <script type="text/javascript">
-      const sample = [
-        '(defn fib (n)',
-        '  (if (<= 2 n)',
-        '      (+ (fib (- n 1))',
-        '         (fib (- n 2)))',
-        '    n))',
-        '',
-        '(print "fib 10 =" (fib 10))',
-        ''
-      ].join('\n')
+<html lang="en">
 
-      const editor = document.querySelector('.editor')
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="./lib/codemirror.css" />
+  <title>The Ape Programming Language | by shixiongfei</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      margin: 0;
+      height: 100%;
+    }
 
-      const codemirror = CodeMirror(editor, {
-        value: sample,
-        lineNumbers: true,
-        autoCloseBrackets: true,
-        matchBrackets: true,
-        mode: 'commonlisp',
-        extraKeys: {
-          Tab: function (cm) {
-            var spaces = Array(cm.getOption('indentUnit') + 1).join(' ')
-            cm.replaceSelection(spaces)
-          }
+    #panel {
+      position: relative;
+      width: calc(100vw - 20px);
+      height: calc(100vh - 222px);
+      padding: 10px;
+      cursor: default;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .editor {
+      font-family: monospace;
+      font-size: 14px;
+      font-weight: 400;
+      padding: 0;
+      tab-size: 2;
+      width: calc(100vw - 20px);
+      height: calc(100vh - 225px);
+      border-radius: 4px;
+      box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+        0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+      letter-spacing: normal;
+      line-height: 20px;
+    }
+
+    .CodeMirror {
+      height: 100%;
+    }
+
+    #run {
+      position: absolute;
+      bottom: 12px;
+      left: 12px;
+      width: 100px;
+      height: 30px;
+      border-radius: 2px;
+      outline: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .attachment-full {
+      position: fixed;
+      top: 0;
+      right: 0;
+    }
+
+    iframe {
+      width: 100%;
+      height: 200px;
+      overflow: hidden;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="panel">
+    <div class="editor language-lisp"></div>
+    <button id="run" onclick="run()">Run</button>
+    <a href="https://github.com/shixiongfei/ape">
+      <img src="https://github.blog/wp-content/uploads/2008/12/forkme_right_green_007200.png?resize=149%2C149"
+        alt="Fork me on GitHub" class="attachment-full size-full" loading="lazy" width="149" height="149"
+        data-recalc-dims="1" />
+    </a>
+  </div>
+  <script type="application/javascript" src="./lib/codemirror.js"></script>
+  <script type="application/javascript" src="./mode/commonlisp/commonlisp.js"></script>
+  <script type="application/javascript" src="./addon/edit/closebrackets.js"></script>
+  <script type="application/javascript" src="./addon/edit/matchbrackets.js"></script>
+  <script type="text/javascript">
+    const sample = [
+      '(defn fib (n)',
+      '  (if (<= 2 n)',
+      '      (+ (fib (- n 1))',
+      '         (fib (- n 2)))',
+      '    n))',
+      '',
+      '(print "fib 10 =" (fib 10))',
+      ''
+    ].join('\n')
+
+    const editor = document.querySelector('.editor')
+
+    const codemirror = CodeMirror(editor, {
+      value: sample,
+      lineNumbers: true,
+      autoCloseBrackets: true,
+      matchBrackets: true,
+      mode: 'commonlisp',
+      extraKeys: {
+        Tab: function (cm) {
+          var spaces = Array(cm.getOption('indentUnit') + 1).join(' ')
+          cm.replaceSelection(spaces)
         }
-      })
-
-      function run() {
-        console.log(codemirror.getValue())
-        localStorage.setItem('apeScript', codemirror.getValue())
-
-        const oldIframe = document.querySelector('iframe')
-        if (oldIframe) {
-          document.body.removeChild(oldIframe)
-        }
-
-        const newIframe = document.createElement('iframe')
-        newIframe.frameBorder = '0'
-        newIframe.scroll = 'no'
-        newIframe.setAttribute('src', './ape.html')
-        document.body.appendChild(newIframe)
       }
-    </script>
-    <script src="https://hm.baidu.com/hm.js?9c23f69166e97676e5d6cbe927797f45"></script>
-  </body>
+    })
+
+    function run() {
+      console.log(codemirror.getValue())
+      localStorage.setItem('apeScript', codemirror.getValue())
+
+      const oldIframe = document.querySelector('iframe')
+      if (oldIframe) {
+        document.body.removeChild(oldIframe)
+      }
+
+      const newIframe = document.createElement('iframe')
+      newIframe.frameBorder = '0'
+      newIframe.scroll = 'no'
+      newIframe.setAttribute('src', './ape.html')
+      document.body.appendChild(newIframe)
+    }
+  </script>
+  <script src="https://hm.baidu.com/hm.js?ae195ef040b2cfcca8ad4c4d96795f0a"></script>
+</body>
+
 </html>
